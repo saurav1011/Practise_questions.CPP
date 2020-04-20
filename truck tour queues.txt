@@ -1,0 +1,77 @@
+int truckTour(vector<vector<int>> pp) {
+    /*
+     * Write your code here.
+     */
+    int n=pp.size();
+    queue<int>A;
+    queue<int>B;
+    for(int i=0;i<n;i++){
+        A.push(pp[i][1]);
+    }
+    for(int i=0;i<n;i++){
+        B.push(pp[0][i]);
+    }
+    int start=0;
+    int count=0;
+    while(!B.empty()){
+        if(A.front()>=B.front()){
+            int d=A.front()-B.front();
+            int f=d-A.front();
+            if(f>0){
+                A.pop();
+                B.pop();
+                count++;
+                B.front()=B.front()+f;
+            }
+        }
+        else{
+            int c=A.front();
+            int d=B.front();
+            A.pop();
+            B.pop();
+            A.push(c);
+            B.push(d);
+            start++;
+            count=start;
+
+        }                
+    }
+    return count;
+}
+////////////////////////
+int truckTour(vector<vector<int>> pp) {
+    /*
+     * Write your code here.
+     */
+        int n=pp.size();
+    queue<int>A;
+    queue<int>B;
+    for(int i=0;i<n;i++){
+        A.push(pp[i][1]);
+    }
+    for(int i=0;i<n;i++){
+        B.push(pp[0][i]);
+    }
+    int start=0;
+    int passed=0;
+    int petrol=0;
+    while(passed<n){
+        int c=A.front();
+        int d=B.front();
+        petrol=petrol+B.front();
+        B.pop();
+        A.pop();
+        if(petrol>=A.front()){
+            passed=passed+1;
+            petrol=petrol-A.front();
+        }                
+        else{
+            start=start+passed+1;
+            passed=0;
+            petrol=0;
+        }
+        A.push(c);
+        B.push(d);
+    }
+    return start;
+}

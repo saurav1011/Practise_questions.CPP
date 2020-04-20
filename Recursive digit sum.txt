@@ -1,0 +1,43 @@
+///
+// Complete the superDigit function below.
+int indsum(int x){
+    int sum=0;
+    while(x!=0){
+        sum=sum+x%10;
+        x=x/10;        
+    }return sum;
+}
+
+int superDigit(string n, int k) {
+    string l=n;
+    for(int i=1;i<k;i++){
+        l=l.append(n);
+    }
+    long long int p= stoi(l);
+    while(p/10!=0){
+        p=indsum(p);
+    }
+    return p;
+}/////
+//////
+We define super digit of an integer  using the following rules:
+
+Given an integer, we need to find the super digit of the integer.
+
+If  has only  digit, then its super digit is .
+Otherwise, the super digit of  is equal to the super digit of the sum of the digits of .
+//////////////////////////
+int indsum(long int x){
+    int sum=0;
+    while(x!=0){
+        sum=(sum+x%10);
+        x=x/10;        
+    }return sum;
+}
+long int digit_sum_finder(string s){
+    int rem=0;
+    for(int i=0;i<s.length();++i){
+        rem = (rem + (s[i]-'0'))%9;
+    }
+    return rem%9;
+}

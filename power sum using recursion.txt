@@ -1,0 +1,28 @@
+bool ifxcanbreak(int x,int n)[
+    for(int i=1;i<sqrt(x);i++){//two pointer approach
+        for(int j=sqrt(x);j>i;j--){
+            if(pow(i,n)+pow(j,n)==x && i!=j){
+                return true;
+            }
+            if(pow(i,n)+pow(j,n)< x) break;
+        }
+    }return false;
+]
+int powerSum(int X, int N) {
+    int count=0;
+    if (ifxcanbreak(X,N)==true){
+        count++;
+        
+    }
+    
+}
+////////////////////////
+int powerSum(int X, int N, int num=1) {
+    int i_pow = pow(num,N);
+    if (i_pow > X)
+        return 0;
+    else if (i_pow == X)
+        return 1;
+      // subproblem
+    return powerSum(X,N,num+1) + powerSum(X-i_pow,N,num+1);
+}

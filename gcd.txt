@@ -1,0 +1,18 @@
+int Solution::gcd(int A, int B) {
+    if (A>B){
+        for(int i=A;i>=0;i--){
+        if(A%i==0 && B%i==0)
+        return i;
+        }
+    }
+    else if (A=B){
+        return A;
+    }
+    else if (A<B){
+        for(int i=A;i>=0;i--){
+        if(A%i==0 && B%i==0)
+        return i;
+        }
+    }
+    return gcd(A,B);
+}

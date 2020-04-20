@@ -1,0 +1,28 @@
+int maxfactor(int A){
+    int ans;
+    for(int i=sqrt(A);i>=1;i--){
+        if(A%i==0){
+            int ans= (A/i);
+            
+        }        
+    }
+    return ans;
+    
+}
+/*
+ * Complete the downToZero function below.
+ */
+int downToZero(int n) {
+    int count=0;
+    while(n>0){
+        if(maxfactor(n)!=n){
+            count++;
+            n=maxfactor(n);
+        }
+        else{
+            n=n-1;
+            count++;
+        }
+    }
+    return count;
+}

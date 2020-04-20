@@ -1,0 +1,110 @@
+int stacksum(stack<int>A){
+    int sum=0;
+    for(int i=0;i<A.size();i++){
+        sum=sum+A.top();
+        A.pop();
+    }
+    return sum;
+}
+
+/*
+ * Complete the equalStacks function below.
+ */
+int equalStacks(vector<int> h1, vector<int> h2, vector<int> h3) {
+    int n1=h1.size();
+    int n2=h2.size();
+    int n3=h3.size();
+    stack<int>s1;
+    stack<int>s2;
+    stack<int>s3;
+    for(int i=n1-1;i>=0;i--){
+        s1.push(h1[i]);
+    }
+    for(int i=n2-1;i>=0;i--){
+        s2.push(h2[i]);
+    }
+    for(int i=n3-1;i>=0;i--){
+        s3.push(h3[i]);
+    }
+    int m=n1+n2+n3;
+    int j=0;
+    while(j<m){
+        if(stacksum(s1)==stacksum(s2) && stacksum(s2)==stacksum(s3)){
+            return stacksum(s1);
+        }
+        else if(stacksum(s1)>stacksum(s2) && stacksum(s1)>stacksum(s3)){
+            s1.pop();
+        }
+        else if(stacksum(s2)>stacksum(s3) && stacksum(s2)>stacksum(s1)){
+            s2.pop();
+        }        
+        else if(stacksum(s3)>stacksum(s1) && stacksum(s3)>stacksum(s2)){
+            s3.pop();
+        }
+    }
+}
+////////////////////////////
+int i,j,k;
+    i = n1-1;
+    j = n2-1;
+    k = n3-1;
+    while(i>=0 && j>=0 && k>=0){
+        if(h1[i]==h2[j] && h2[j]==h3[k]){
+            printf("%d",h1[i]);
+            return 0;
+        }
+        while(h1[i]>h2[j] || h1[i]>h3[k]){
+            i--;
+        }
+        while(h2[j]>h1[i] || h2[j]>h3[k]){
+            j--;
+        }
+        while(h3[k]>h2[j] || h3[k]>h1[i]){
+            k--;
+        }
+    }
+    printf("0");
+    return 
+//////////////////////////
+int vectorsum(vector<int>A){
+    int sum=0;
+    for(int i=0;i<A.size();i++){
+        sum=sum+A[i];
+    }
+    return sum;
+}
+
+/*
+ * Complete the equalStacks function below.
+ */
+int equalStacks(vector<int> h1, vector<int> h2, vector<int> h3) {
+    int n1=h1.size();
+    int n2=h2.size();
+    int n3=h3.size();
+    for(int i=n1-1;i>=0;i--){
+        h1[i]=h1[n1-i-1];
+    }
+    for(int i=n2-1;i>=0;i--){
+        h2[i]=h2[n2-i-1];
+    }
+    for(int i=n3-1;i>=0;i--){
+        h3[i]=h3[n3-i-1];
+    }
+    int m=n1+n2+n3;
+    int j=0;
+    while(j<m){
+        if(vectorsum(h1)==vectorsum(h2) && vectorsum(h2)==vectorsum(h3)){
+            return vectorsum(h1);
+        }
+        else if(vectorsum(h1)>vectorsum(h2) && vectorsum(h1)>vectorsum(h3)){
+            h1.pop_back();
+        }
+        else if(vectorsum(h2)>vectorsum(h1) && vectorsum(h2)>vectorsum(h3)){
+            h2.pop_back();
+        }        
+        else if(vectorsum(h3)>vectorsum(h2) && vectorsum(h3)>vectorsum(h1)){
+            h3.pop_back();
+        }
+    }
+    return 0;
+}

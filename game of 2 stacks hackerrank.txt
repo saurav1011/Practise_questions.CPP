@@ -1,0 +1,28 @@
+int twoStacks(int x, vector<int> a, vector<int> b) {
+    stack<int>A;
+    stack<int>B;
+    int n1=a.size();
+    int n2=b.size();
+    for(int i=0;i<n1;i++){
+        A.push(a[n1-1-i]);
+    }
+    for(int i=0;i<n2;i++){
+        B.push(b[n2-1-i]);
+    }
+    int sum=0;
+    int count=0;
+    while(sum<x){
+        int d=min(A.top(),B.top());
+        sum=sum+d;
+        if(d==A.top()){
+            A.pop();
+        }
+        if(d==B.top()){
+            B.pop();
+        }
+        if(sum<=x) count++;
+        if(sum>x) break;
+    }
+    return count;
+   
+}

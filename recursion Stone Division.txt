@@ -1,0 +1,35 @@
+long nmbr(queue<long>q,long r){//q corres to n and r to s[n-1-i]
+    long count=0;
+    while(q.front()%r==0 && q.front()!=r){
+        long n=q.front()/r;
+        q.pop();
+        count++;
+        for(long i=0;i<n;i++){
+            q.push(r);
+        }
+    }
+    return count;
+}
+queue<long>qwerty(queue<long>qw,long r){
+    while(qw.front()%r==0 && qw.front()!=r){
+        long n=qw.front()/r;
+        qw.pop();
+        for(long i=0;i<n;i++){
+            qw.push(r);
+        }
+    
+    }return qw;
+}
+
+
+long stoneDivision(long n, vector<long> s) {
+    queue<long>q;
+    sort(s.begin(),s.end());
+    q.push(n);
+    long ans=0;
+    for(long i=s.size()-1;i>=0;i--){
+        ans=ans+nmbr(q,s[i]);//make sure this q updates at every step
+        q=qwerty(q,s[i]);
+        }
+    return ans;
+}

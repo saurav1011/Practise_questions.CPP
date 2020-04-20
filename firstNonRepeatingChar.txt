@@ -1,0 +1,44 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+char fnr(string A)
+{
+    int n=A.length();
+    unordered_map<char,pair<int,int>>sol;
+    for(int i=0;i<n;i++)
+    {
+        sol[A[i]].first++;
+        sol[A[i]].second=i;
+        
+    }
+    // stores index of first non-repeating character
+	int min_index = n;
+	
+	// traverse map and find character having count 1 and
+	// having minimum index in the string
+	for (auto it : sol)
+	{
+		int count = it.second.first;
+		int firstIndex = it.second.second;
+
+		if (count == 1 && firstIndex < min_index)
+			min_index = firstIndex;
+	}
+	
+	return A[min_index];
+}
+int main()
+{
+    string A;
+    getline(cin,A);
+    cout<<fnr(A)<<endl;
+    return 0;
+}
